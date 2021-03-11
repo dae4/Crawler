@@ -4,14 +4,16 @@ import os
 import urllib.request
 import argparse
 
-options = webdriver.ChromeOptions()
-options.add_argument('headless')
-options.add_argument('window-size=1920x1080')
-options.add_argument("disable-gpu")
 
 def main(searchterm):
-    driver = webdriver.Chrome(executable_path='chromedriver_win32/chromedriver.exe')
-    
+
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
+    options.add_argument('window-size=1920x1080')
+    options.add_argument("disable-gpu")
+    options.add_argument("lang=ko_KR") # 한국어!
+
+    driver = webdriver.Chrome(executable_path='chromedriver_win32/chromedriver.exe',chrome_options=options)
     url = "https://www.google.com/search?q="+searchterm+"&source=lnms&tbm=isch"
     driver.get(url)
     
